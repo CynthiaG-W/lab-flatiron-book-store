@@ -6,7 +6,6 @@ const bookStore = {
             title: 'Eloquent JavaScript: A Modern Introduction to Programming',
             author: 'Marjin Haverbeke',
             imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51IKycqTPUL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg',
-            
         },
         {
             id:2,
@@ -25,7 +24,6 @@ const bookStore = {
             title: 'JavaScript: The Definitive Guide',
             author: 'David Flanagan',
             imageUrl: "https://images-na.ssl-images-amazon.com/images/I/51wijnc-Y8L._SX379_BO1,204,203,200_.jpg"
-            
         },
         {
             id:5,
@@ -38,10 +36,47 @@ const bookStore = {
             title: 'Cracking the Coding Interview',
             author: 'Gayle Laakmann McDowell',
             imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41oYsXjLvZL._SY344_BO1,204,203,200_.jpg'
-            
         }
     ]
 }
 
-// Write your code here!
+// Make sure the DOM is loaded first
+document.addEventListener('DOMContentLoaded', () => {
+    // Update header text
+    const bookStoreTitle = document.getElementById('header'); // Must match test id
+    bookStoreTitle.textContent = bookStore.name;
 
+    // Select book list container
+    const bookList = document.getElementById('book-list');
+
+    // Clear existing content
+    bookList.innerHTML = "";
+
+    // Loop through books and create elements dynamically
+    bookStore.books.forEach(book => {
+        // Create container <li>
+        const bookContainer = document.createElement('li');
+        bookContainer.classList.add('list-li');
+
+        // Create image
+        const bookImage = document.createElement('img');
+        bookImage.src = book.imageUrl;
+        bookImage.alt = book.title;
+
+        // Create title
+        const bookTitle = document.createElement('h3');
+        bookTitle.textContent = book.title;
+
+        // Create author
+        const bookAuthor = document.createElement('p');
+        bookAuthor.textContent = book.author;
+
+        // Append elements to container
+        bookContainer.appendChild(bookImage);
+        bookContainer.appendChild(bookTitle);
+        bookContainer.appendChild(bookAuthor);
+
+        // Append container to book list
+        bookList.appendChild(bookContainer);
+    });
+});
